@@ -91,7 +91,7 @@ public class PlayerControllerIKFeetPlacementTask : MonoBehaviour
     {
         if (anim == null) { return; }
 
-        MovePelvisHeight();
+
 
         /* 
          * You need to set to 1 the IK weight in the animator controller for the position of each foot, right and left one. 
@@ -99,9 +99,24 @@ public class PlayerControllerIKFeetPlacementTask : MonoBehaviour
          * and the walking animation will not have any effect in his movement.
          * Hint: Search in the API for a pre-built method for the Animator class to assign IK weights to different body parts of an humanoid rig (anim.Set...).
          */
+        //MovePelvisHeight();
 
         // START TODO ###################
+        if (!enableFeetIK)
+        {
+            anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, 0f);
+            anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, 0f);
+            anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 0f);
+            anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 0f);
+            return;
+        }
 
+        // Adjust pelvis height first
+       // MovePelvisHeight();
+
+        // --- 1) Position weights for both feet ---
+        anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, 1f);
+        anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1f);
 
         // END TODO ###################
 
@@ -118,12 +133,18 @@ public class PlayerControllerIKFeetPlacementTask : MonoBehaviour
 
         if (useProIKFeature)
         {
-            // START TODO ###################
+            float rightRotWeight = anim.GetFloat(rightFootAnimVariableName);
+            float leftRotWeight = anim.GetFloat(leftFootAnimVariableName);
 
-
-            // END TODO ###################
+            anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, rightRotWeight);
+            anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, leftRotWeight);
         }
-
+        else
+        {
+            // Simple case: fully follow ground rotation
+            anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, enableFeetIK ? 1f : 0f);
+            anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, enableFeetIK ? 1f : 0f);
+        }
 
         /* 
          * Finally, we need to move both feet to the desired IK position and rotation to match the ground.
@@ -133,9 +154,18 @@ public class PlayerControllerIKFeetPlacementTask : MonoBehaviour
          * - Quaternion rotationIKHolder: Desired IK rotation for each foot.
          * - ref float lastFootPositionY: Previous foot position in Y passed by reference.
          */
+        MovePelvisHeight();
 
         // START TODO ###################
+        MoveFeetToIKPoint(AvatarIKGoal.RightFoot,
+                      rightFootIKPosition,
+                      rightFootIKRotation,
+                      ref lastRightFootPositionY);
 
+        MoveFeetToIKPoint(AvatarIKGoal.LeftFoot,
+                          leftFootIKPosition,
+                          leftFootIKRotation,
+                          ref lastLeftFootPositionY);
 
         // END TODO ###################
 
@@ -155,7 +185,7 @@ public class PlayerControllerIKFeetPlacementTask : MonoBehaviour
 
         // START TODO ###################
 
-        Vector3 targetIKPosition = Vector3.zero;
+        Vector3 targetIKPosition = anim.GetIKPosition(foot);
 
         // END TODO ###################
 
@@ -177,7 +207,10 @@ public class PlayerControllerIKFeetPlacementTask : MonoBehaviour
 
             // START TODO ###################
 
-            float yVariable = 0;
+            float yVariable = Mathf.Lerp(lastFootPositionY,
+                                     positionIKHolder.y,
+                                     feetToIKPositionSpeed);
+
 
             // END TODO ###################
 
