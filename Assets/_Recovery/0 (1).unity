@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 374040428}
   - component: {fileID: 374040427}
   - component: {fileID: 374040430}
+  - component: {fileID: 374040434}
   - component: {fileID: 374040433}
   - component: {fileID: 374040432}
   - component: {fileID: 374040431}
@@ -923,6 +924,25 @@ MonoBehaviour:
   heightRoughness: 0.3
   edgeSoftness: 1
   radius: 10
+--- !u!114 &374040434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374040426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ecd82617a1e5d43bd49de1a2638aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BouncyBallInstanceBrush
+  ballPrefab: {fileID: 0}
+  ballsPerClick: 3
+  spawnHeight: 3
+  throwForce: 5
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &498339410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,6 +2199,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e0a91f5d1c3f4d4ca7ef92d4e643784, type: 3}
+--- !u!1001 &4790417589427019110
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1232840708440056338, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_Name
+      value: Sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468131259921279166, guid: e29154a91ba62134e879d8a2436452bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e29154a91ba62134e879d8a2436452bc, type: 3}
 --- !u!1001 &6701231845121933298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2427,3 +2515,4 @@ SceneRoots:
   - {fileID: 573571883}
   - {fileID: 6701231845121933298}
   - {fileID: 498339413}
+  - {fileID: 4790417589427019110}
